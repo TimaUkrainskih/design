@@ -2,6 +2,7 @@ package ru.iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -74,7 +75,7 @@ class ListUtilsTest {
     @Test
     void whenRemoveAll() {
         input.add(2);
-        ListUtils.removeAll(input, List.of(3,1,2));
+        ListUtils.removeAll(input, List.of(3, 1, 2));
         assertThat(input).isEmpty();
     }
 
