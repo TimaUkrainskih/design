@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 class RevertLinkedTest {
     private RevertLinked<Integer> linked;
+
     @BeforeEach
     void init() {
         linked = new RevertLinked<>();
