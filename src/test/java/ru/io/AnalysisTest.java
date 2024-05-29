@@ -30,4 +30,25 @@ class AnalysisTest {
         }
         assertThat("10:57:01;11:02:02;").isEqualTo(result.toString());
     }
+
+    @Test
+    void serverIsAvailable(@TempDir Path tempDir) throws IOException {
+        File source = tempDir.resolve("source.log").toFile();
+        try (PrintWriter output = new PrintWriter(source)) {
+            output.println("200 10:56:01\n" +
+                    "200 10:57:01\n" +
+                    "300 10:58:01\n" +
+                    "200 10:59:01\n" +
+                    "300 11:01:02\n" +
+                    "200 11:02:02");
+        }
+        File target = tempDir.resolve("target.csv").toFile();
+        Analysis analysis = new Analysis();
+        analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
+        StringBuilder result = new StringBuilder();
+        try (BufferedReader input = new BufferedReader(new FileReader(target))) {
+            input.lines().forEach(result::append);
+        }
+        assertThat("").isEqualTo(result.toString());
+    }
 }
