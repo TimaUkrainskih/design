@@ -10,8 +10,9 @@ import java.util.function.Predicate;
 public class Search {
 
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, path -> path.toFile().getName().endsWith(".js")).forEach(System.out::println);
+        validateArguments(args);
+        Path start = Paths.get(args[0]);
+        search(start, path -> path.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) {
@@ -22,5 +23,15 @@ public class Search {
             throw new RuntimeException(e);
         }
         return searcher.getPaths();
+    }
+
+    public static void validateArguments(String[] args) {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Invalid number of arguments.");
+        }
+        Path start = Paths.get(args[0]);
+        if (!Files.exists(start) || !Files.isDirectory(start)) {
+            throw new IllegalArgumentException("Invalid root folder.");
+        }
     }
 }
