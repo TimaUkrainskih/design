@@ -33,5 +33,9 @@ public class Search {
         if (!Files.exists(start) || !Files.isDirectory(start)) {
             throw new IllegalArgumentException("Invalid root folder.");
         }
+        String fileExtension = args[1];
+        if (fileExtension.isEmpty()) {
+            throw new IllegalArgumentException("Invalid file extension.");
+        }
     }
 }
