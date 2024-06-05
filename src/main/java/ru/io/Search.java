@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 public class Search {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         validateArguments(args);
         Path start = Paths.get(args[0]);
         search(start, path -> path.toFile().getName().endsWith(args[1])).forEach(System.out::println);
@@ -20,7 +20,7 @@ public class Search {
         try {
             Files.walkFileTree(root, searcher);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return searcher.getPaths();
     }
