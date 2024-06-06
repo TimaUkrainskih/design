@@ -34,7 +34,7 @@ public class Search {
             throw new IllegalArgumentException("Invalid root folder.");
         }
         String fileExtension = args[1];
-        if (fileExtension.isEmpty()) {
+        if (fileExtension.isEmpty() || !fileExtension.startsWith(".")) {
             throw new IllegalArgumentException("Invalid file extension.");
         }
     }
