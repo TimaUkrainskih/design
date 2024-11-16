@@ -7,8 +7,7 @@ import java.net.Socket;
 public class EchoServer {
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
-            boolean close = false;
-            while (!close) {
+            while (!server.isClosed()) {
                 Socket socket = server.accept();
                 try (OutputStream output = socket.getOutputStream();
                      BufferedReader input = new BufferedReader(
@@ -16,7 +15,7 @@ public class EchoServer {
                      )) {
                     String request = input.readLine();
                     if (request.contains("/?msg=Bye")) {
-                        close = true;
+                        server.close();
                     }
                     System.out.println(request);
                     output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
