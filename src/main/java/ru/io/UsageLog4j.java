@@ -22,7 +22,7 @@ public class UsageLog4j {
         boolean value6 = true;
         char value7 = 'a';
         LOG.info("Info: long: {}, int: {}, short: {}, byte: {}," +
-                " double: {}, float: {}, boolean: {}, char: {}",
+                        " double: {}, float: {}, boolean: {}, char: {}",
                 value0, value1, value2, value3, value4, value5, value6, value7);
     }
 }
