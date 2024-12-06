@@ -19,6 +19,14 @@ public class NestedObject {
         this.description = description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return "NestedObject{" +

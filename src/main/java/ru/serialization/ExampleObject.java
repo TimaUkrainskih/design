@@ -6,6 +6,7 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.annotation.*;
+import org.json.JSONObject;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -45,6 +46,26 @@ public class ExampleObject {
                 '}';
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public NestedObject getNestedObject() {
+        return nestedObject;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
     public static void main(String[] args) throws Exception {
         ExampleObject object = new ExampleObject(true, 5, "Name",
                 new NestedObject("Description", 5.0), new String[]{"Tag1", "Tag2"});
@@ -80,5 +101,13 @@ public class ExampleObject {
             ExampleObject result = (ExampleObject) unmarshaller.unmarshal(reader);
             System.out.println(result);
         }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("isAlive", object.isActive());
+        jsonObject.put("count", object.getCount());
+        jsonObject.put("name", object.getName());
+        jsonObject.put("nested", new JSONObject(object.getNestedObject()));
+        jsonObject.put("tags", object.getTags());
+        System.out.println(jsonObject);
+        System.out.println(new JSONObject(object));
     }
 }
