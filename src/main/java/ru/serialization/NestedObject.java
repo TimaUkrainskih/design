@@ -1,8 +1,18 @@
 package ru.serialization;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "nestedObject")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class NestedObject {
     private String description;
     private double value;
+
+    public NestedObject() {
+
+    }
 
     public NestedObject(String description, double value) {
         this.value = value;
