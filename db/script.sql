@@ -3,7 +3,7 @@ create table students (
     first_name varchar(20),
     last_name varchar(20),
     birth_date date,
-    group_namber varchar(10),
+    group_number varchar(10),
     enrollment_date date,
     gender char(1) check (gender in ('F', 'M'))
 );
