@@ -12,4 +12,5 @@ create table project_participants(
     project_id int references projects(id),
     participants_id int references participants(id),
     role varchar(50)
+    primary key (project_id, participants_id)
 );
