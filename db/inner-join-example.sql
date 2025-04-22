@@ -1,14 +1,15 @@
-CREATE TABLE customers(
-    customer_id serial primary key,
-    first_name varchar(50),
-    last_name varchar(50),
-    email varchar(255)
+CREATE TABLE customers (
+    customer_id serial PRIMARY KEY,
+    first_name varchar(50) NOT NULL CHECK (char_length(first_name) > 1),
+    last_name varchar(50) NOT NULL CHECK (char_length(last_name) > 1),
+    email varchar(255) NOT NULL UNIQUE
+        CHECK (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
 );
 
-CREATE TABLE orders(
-    order_id serial primary key,
-    customer_id int references customers(customer_id),
-    order_date timestamp
+CREATE TABLE orders (
+    order_id serial PRIMARY KEY,
+    customer_id int NOT NULL REFERENCES customers(customer_id) ON DELETE CASCADE,
+    order_date timestamp NOT NULL DEFAULT current_timestamp CHECK (order_date <= now())
 );
 
 
