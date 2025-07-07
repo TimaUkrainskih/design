@@ -53,7 +53,6 @@ public class TableEditor implements AutoCloseable {
         executeStatement(sql);
     }
 
-
     public String getTableScheme(String tableName) throws Exception {
         var rowSeparator = "-".repeat(30).concat(System.lineSeparator());
         var header = String.format("%-15s|%-15s%n", "NAME", "TYPE");
