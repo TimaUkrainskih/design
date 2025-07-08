@@ -17,11 +17,11 @@ public class TableEditor implements AutoCloseable {
 
     private void initConnection() {
         try {
-            Class.forName(properties.getProperty("spring.datasource.driver-class-name"));
+            Class.forName(properties.getProperty("datasource.driver-class-name"));
             connection = DriverManager.getConnection(
-                    properties.getProperty("spring.datasource.url"),
-                    properties.getProperty("spring.datasource.username"),
-                    properties.getProperty("spring.datasource.password")
+                    properties.getProperty("datasource.url"),
+                    properties.getProperty("datasource.username"),
+                    properties.getProperty("datasource.password")
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
